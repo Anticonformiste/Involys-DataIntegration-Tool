@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Involys.DataAccess.Connectors.DbConnector" Collapsed="true">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAgQAAAAAAAAAAQABUAAAIAABAAAAAgQABCAAAA=</HashCode>
+      <FileName>DataAccess\Connectors\DbConnector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Involys.DataAccess.Services.ServiceMetier" Collapsed="true">
+    <Position X="2.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataAccess\Services\ServiceMetier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Involys.Home" Collapsed="true">
+    <Position X="6.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAACAAQAAAAACAAAACAAAAAAAAAgQAAABAAAA=</HashCode>
+      <FileName>Formulaires\Home.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Involys.Program" Collapsed="true">
+    <Position X="10" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Involys.Formulaires.Output.AuthenticateOut" Collapsed="true">
+    <Position X="8.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CMAAAAAAICAAAAAAAACAAAACAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Formulaires\Output\AuthenticateOut.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Involys.Formulaires.Output.MainOut" Collapsed="true">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAgQACAABAAgAACAWgACAIgAAAIUEQAABgIAACE=</HashCode>
+      <FileName>Formulaires\Output\MainOut.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Involys.Pocos.ColumnEcriture" Collapsed="true">
+    <Position X="8" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pocos\ColumnEcriture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Involys.Pocos.Condition" Collapsed="true">
+    <Position X="6.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACEAAAIAACDAAAAISCAAAGAQEA=</HashCode>
+      <FileName>Pocos\Condition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Involys.Pocos.ConnectionHelper" Collapsed="true">
+    <Position X="4.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAQAAAAAAAAAAAAACAAAAAgAAAAA=</HashCode>
+      <FileName>Pocos\ConnectionHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Involys.Pocos.ConnexionSysteme" Collapsed="true">
+    <Position X="7.75" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAACAAAgIAAA=</HashCode>
+      <FileName>Pocos\ConnexionSysteme.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Involys.Pocos.Ecriture" Collapsed="true">
+    <Position X="8" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAACAAAAAAAAAAAAAAAAAAAAAACAAAAABAAA=</HashCode>
+      <FileName>Pocos\Ecriture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Involys.Pocos.Evenement" Collapsed="true">
+    <Position X="6.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAEAAAgAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Pocos\Evenement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Involys.Pocos.Parametre" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAACAAAAABAgQAAkAAAAAAgAAAAAggABAWAAACAAABA=</HashCode>
+      <FileName>Pocos\Parametre.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Involys.Properties.Resources" Collapsed="true">
+    <Position X="4.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAEAAAAIAAAAABEAAgAQAAAAAAACAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Involys.UserControls.BaseUC" Collapsed="true">
+    <Position X="2.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserControls\BaseUC.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Involys.Utility.ConditionsUtility" Collapsed="true">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Utility\ConditionsUtility.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Involys.Utility.DatasUtility" Collapsed="true">
+    <Position X="4.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAIAAAAAAAAAAAAAAIIAAAAA=</HashCode>
+      <FileName>Utility\DatasUtility.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Involys.Utility.ExcelUtility" Collapsed="true">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAQgAAAAAAAUAAAABAAAAAAAAAAAAIAACAAAAAAA=</HashCode>
+      <FileName>Utility\ExcelUtility.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Involys.Utility.Exportation.DataExporter" Collapsed="true">
+    <Position X="4.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAABQBAAAAAABAABAAABAgACAAAAAAAAABAAQAAACA=</HashCode>
+      <FileName>Utility\Exportation\DataExporter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Involys.Utility.Exportation.FileType" Collapsed="true">
+    <Position X="6" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAQAAACAAAEAA=</HashCode>
+      <FileName>Utility\Exportation\FileType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

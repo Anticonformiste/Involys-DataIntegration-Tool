@@ -1,0 +1,219 @@
+ALTER TRIGGER [dbo].[$NmtempTable_Ajout] ON [dbo].[$NmtempTable] FOR INSERT AS
+BEGIN
+declare @codf nvarchar(10);
+
+declare @codf1 nvarchar(10);
+
+declare @req nvarchar(2000);
+
+declare @numecr nvarchar(20);
+
+declare @typ nvarchar(40);
+
+declare @v nvarchar(40);
+
+declare @i int;
+
+declare @nrow int;
+
+declare @curentrow int;
+
+declare @SEL nvarchar(6);
+
+declare @req1 nvarchar(2000);
+
+declare @req2 nvarchar(2000);
+
+declare @req3 nvarchar(2000);
+
+declare @req4 nvarchar(2000);
+
+declare @NomChamp nvarchar(40);
+
+declare @Condition nvarchar(50);
+
+declare @ReqCondition nvarchar(2000);
+
+declare @champ nvarchar(2000);
+
+declare @Reqchamp nvarchar(2000);
+
+declare @Reqchamp2 nvarchar(2000);
+
+declare @reqchamp3 nvarchar(2000);
+
+declare @Typchamp nvarchar(2000);
+ 
+declare @tabl nvarchar(50);
+
+declare @Codetabl nvarchar(50);
+
+declare @cle nvarchar(40);
+
+declare @valcle nvarchar(40);
+
+declare @Varboucle tinyint;
+
+declare @NbrChamp tinyint;
+
+declare @NumChamp tinyint;
+
+declare @CleEcr int;
+
+declare @ReqIns varchar(2500);
+
+declare @Bc int;
+
+declare @taille int;
+
+declare @idTblSortie int;
+
+----------------------------------------------------------------------------------------------------
+
+set @tabl = '$NmtempTable';
+
+set @codetabl = @tabl;
+
+set @curentrow = 1;
+
+set @Varboucle = 1;
+
+select * into #TabTmp from inserted;
+
+select @codf = Code_fils, @req = Req, @Typ = Type, @cle = Cle, @numecr = Numecrit, @idTblSortie=Code_Table 
+               from INTERMEDIAIRE.dbo.Conditions where TableTmp=@Tabl;
+ 
+set @req1 = 'select '  + @Cle + ' from  #TabTmp ORDER BY ' + @Cle;
+
+set @req2 = 'declare CUR2 cursor for ' + @req1;
+ 
+execute (@req2);
+
+OPEN CUR2;
+
+FETCH NEXT FROM CUR2 into @valcle;
+
+CLOSE CUR2;
+
+DEALLOCATE CUR2;
+
+set @Bc=1;
+
+while @Bc=1  and @Varboucle<>0 begin
+
+      if (@typ='Feuille' or @req is null or @req='')  set @Bc=0;   
+
+      if (@numecr is null)  set @numecr ='0';
+
+      set @nrow=(select count (*) from INTERMEDIAIRE.dbo.[Ecritures_$tblSortie] where numecrit=@numecr);
+
+      set  @curentrow=1;
+
+      declare CurEcr Cursor for select cleecrit,condition from INTERMEDIAIRE.dbo.[Ecritures_$tblSortie] where numecrit=@numecr;
+
+      open CurEcr;;
+
+      while @curentrow<=@nrow begin
+
+            fetch next From CurEcr into @CleEcr,@reqcondition;
+
+            if(@reqCondition <> '') begin
+
+                  set @reqCondition = replace(@reqCondition ,'inserted','#TabTmp');            
+
+                  set @reqCondition = replace(@reqCondition, 'select ','select @ParamOUT2= ');
+
+                  EXECUTE sp_executesql @reqCondition, N'@ParamOUT2 varchar(1) OUTPUT', @ParamOUT2=@condition OUTPUT;         
+
+            end
+
+            else    
+            	set @condition='1';
+
+            if (@condition='1') begin    
+
+                  set @reqins = 'insert into INTERMEDIAIRE.dbo.[Mvt_$tblSortie] values ('''+ @codetabl +''','''+ @Valcle +''',''0''';
+
+                  set @Nbrchamp = (select count(*) from INTERMEDIAIRE.dbo.Structures where Code_Table=@idTblSortie);
+
+                  set @Numchamp=1;
+
+                  Declare CurStruct CURSOR for select Champs,Type,Taille 
+				  from INTERMEDIAIRE.dbo.Structures 
+				  where Code_Table=@idTblSortie;
+
+                  OPEN CurStruct;
+
+                  WHILE (@Numchamp <= @Nbrchamp) BEGIN
+
+                        set @champ = '';
+
+                        FETCH NEXT FROM CurStruct into @NomChamp, @TypChamp, @taille;
+
+                        set @req3 = 'select @ParamOUT=' + @NomChamp + ' from INTERMEDIAIRE.dbo.Ecritures_$tblSortie where Cleecrit=' + convert(varchar,@cleecr);
+
+                        print(@req3);
+
+                        EXECUTE sp_executesql @req3,N'@ParamOUT varchar(500) OUTPUT',@ParamOUT=@reqchamp OUTPUT;
+
+                        Set @SEL = @reqchamp;
+
+                        if (@sel<>'select') set @champ =@reqChamp;
+
+                        else begin
+
+                           if (@reqchamp is null) 
+							 set @champ='';
+                           else begin
+                             set @reqChamp = replace(@reqChamp, 'inserted', '#TabTmp');
+							 set @reqChamp2 = replace(@reqChamp, 'select ','select @ParamOUT2=');
+                             EXECUTE sp_executesql @reqChamp2, N'@ParamOUT2 varchar(500) OUTPUT', @ParamOUT2=@champ OUTPUT;
+                            end--second else
+
+                        end--first else
+
+                        if (@champ is null or @champ = '') set @reqins = @reqins + ', null';
+
+                        else begin
+
+	                        if (@TypChamp = 'Texte') 
+								set @champ = left(@champ, @taille);
+	                        if (@TypChamp  in ('Entier', 'Réel')) 
+								set @reqins = @reqins + ', ' + @champ;
+	                        else 
+								set @reqins = @reqins + ', ''' + @champ + '''';
+						end--du else
+
+                        set @Numchamp = @Numchamp + 1;
+                    END--end of While (@Numchamp <= @Nbrchamp)
+
+					--close the insert query
+                    set @reqins = @reqins + ')'; 
+					--executer la requete d'insertion dans la table MVT_X
+               	    execute(@reqins);
+					--close the cursor of traveling Structure table
+                    close CurStruct;
+            	    deallocate CurStruct;
+
+            end --end of if (@condition=1)
+
+			set @curentrow = @curentrow+1;
+    	end --end of boucle WHILE(@curentrow<=@nrow) le parcours de curseur des Ecritures
+		-- close the cursor of traveling the Ecriture Table
+      	close CurEcr;
+      	Deallocate CurEcr;
+
+        if (@typ<>'Feuille' and @req is not null and  @req <> '') begin
+
+            set @req = replace(@req,'inserted','#TabTmp');
+            set @reqChamp3 = replace(@req, 'select ','select @ParamOUT2=');
+
+            EXECUTE sp_executesql @reqChamp3, N'@ParamOUT2 varchar(500) OUTPUT', @ParamOUT2 = @v OUTPUT;
+
+            set @Varboucle = (select count(*) from INTERMEDIAIRE.dbo.Conditions where Code_pere=@codf  and Valeur=@v);
+            select @codf1=code_fils, @req=req, @typ=type, @numecr=numecrit from INTERMEDIAIRE.dbo.Conditions where Code_pere=@codf and Valeur=@v;
+            set @codf = @codf1;
+      	end--end of IF
+end --end of the first WHILE(@Bc=1  and @Varboucle<>0)
+
+END --Trigger

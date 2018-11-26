@@ -1,0 +1,8 @@
+IF NOT EXISTS (SELECT * FROM sys.triggers WHERE object_id = OBJECT_ID(N'[dbo].[$NmtempTable_Ajout]'))
+Begin
+	declare @crTrg nvarchar(max)='CREATE TRIGGER [dbo].[$NmtempTable_Ajout] ON [dbo].[$NmtempTable] FOR INSERT AS
+	Begin
+		print''Aucune Action, Il Va etre modifié'';
+	End';
+	EXECUTE(@crTrg);
+End
